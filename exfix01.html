@@ -27,6 +27,7 @@
 
       // 1) Criar um useState para armazenar o nome completo.
       const [nomeCompleto, setNomeCompleto] = React.useState('');
+      let nome, sobrenome
 
       /*
         2) Criar uma função para manipular o evento onChange dos inputs. Nessa
@@ -36,29 +37,32 @@
       */
       const handleChange = event => {
 
-        if(event.target.id === "nome") {
-          setNome(event.target.value.toUpperCase())
+        if(event.target.id === "nome" ) {
+          nome = event.target.value
+          setNomeCompleto(nome)
         }
 
-        else {
-          setSobrenome(event.target.value.toUpperCase())
+        else if(event.target.id === "sobrenome") {
+          sobrenome = event.target.value
+          setNomeCompleto(nomeCompleto + ' ' + sobrenome)
         }
 
-        setNomeCompleto(Text(nome) + Text(sobrenome))
-      }
+        document.getElementById('nomeCompleto').textContent = nomeCompleto
+        
+      }  
 
       return (
         <form>
           <div>
-            <label htmlFor="nome">Nome</label>
+            <label htmlFor="nome">Nome </label>
             <input id="nome" type="text" onChange={handleChange} />
           </div>
           <div>
-            <label htmlFor="sobrenome">Sobrenome</label>
+            <label htmlFor="sobrenome">Sobrenome </label>
             <input id="sobrenome" type="text" onChange={handleChange} />
           </div>
           {/*3) Usar a variável de estado para atualizar o conteúdo da div do nome completo.*/}
-          <div id="nomeCompleto">{nomeCompleto}</div>
+          <div id="nomeCompleto">{nomeCompleto.toUpperCase()}</div>
         </form>
       )
       
