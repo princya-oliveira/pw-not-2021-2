@@ -4,7 +4,8 @@ const e = React.createElement;
 
 class FormSoma extends React.Component {
     constructor(props){
-        super(props)
+        super(props);
+        this.state = {  };
     }
 
   
@@ -27,5 +28,7 @@ class FormSoma extends React.Component {
     }
 }
 
-const domContainer = document.getElementById('root');
+// encontrar a div 'root' do arquivo html e mostrar 
+// o componente de classe dentro dela
+const domContainer = document.querySelector('#root');
 ReactDOM.render(e(FormSoma), domContainer);

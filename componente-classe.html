@@ -10,12 +10,40 @@
 
     <div id="root"></div>
 
-    <!-- Adicionar React -->
+    <!-- Adicionar React + Babel-->
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    
-    <!-- Adicionar componente-classe.js -->
-    <script src="ComponenteClasse.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <script type="text/babel">
+
+        // Componente de Classe 
+        class FormSoma extends React.Component {
+            constructor(props) {
+                super(props);
+                // Variáveis de estado
+            }
+
+            render(){
+
+                return (
+                    <form>
+                        <div>
+                            <label htmlFor="num1">Primeiro número:</label><br />
+                            <input id="num1" type="number" value={this.num1} onChange={this.handleChange1} />
+                        </div>
+                        <div>
+                            <label htmlFor="num2">Segundo número:</label><br />
+                            <input id="num2" type="number" value={this.num2} onChange={this.handleChange2} />
+                        </div>
+                        <div>Soma: {this.soma}</div>
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(<FormSoma />, document.getElementById('root'))
+
+    </script>
 </body>
 </html>
