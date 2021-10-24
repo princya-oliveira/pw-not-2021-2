@@ -10,38 +10,62 @@
 
     <div id="root"></div>
 
-    <!-- Adicionar React + Babel-->
+    <!-- Links para adicionar React + Babel -->
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
 
-        // Componente de Classe 
+        // Componente de Classe + método constructor presente nos componentes de classe
         class FormSoma extends React.Component {
             constructor(props) {
-                super(props);
+                super(props)
                 // Variáveis de estado
+                this.state={ num1: 0, num2: 0, soma: 0 }
             }
 
+            // Atualizando as variáveis de estado com a função handleChange
+            // Usando a função setState para atualizar as variáveis
+            handleChange1 = (event) => {
+                this.setState({
+                    num1: event.target.value,
+                    soma: parseInt(this.state.num1) + parseInt(this.state.num2) + 1 // uso da POG para "resolver" o delay das variáveis state
+                })
+            }
+
+            // Atualizando as variáveis de estado com a função handleChange
+            // Usando a função setState para atualizar as variáveis
+            handleChange2 = (event) => {
+                this.setState({
+                    num2: event.target.value,
+                    soma: parseInt(this.state.num1) + parseInt(this.state.num2) + 1 // uso da POG para "resolver" o delay das variáveis state
+                })
+            }
+            // Construindo método render para atualizar a "view" baseada no estado
+            // no formulário abaixo estão os inputs de número
+            // ao aumentar ou diminuir os valores dentro do input ele "chama" as funções
+            // handleChange que atualizam as variáveis de estado, inclusive a que faz a 
+            // soma dos elementos
             render(){
 
                 return (
                     <form>
                         <div>
-                            <label htmlFor="num1">Primeiro número:</label><br />
-                            <input id="num1" type="number" value={this.num1} onChange={this.handleChange1} />
+                            <label htmlFor="num1">Primeiro número:</label><br/>
+                            <input id="num1" type="number" value={this.state.num1} onChange={this.handleChange1} />
                         </div>
                         <div>
                             <label htmlFor="num2">Segundo número:</label><br />
-                            <input id="num2" type="number" value={this.num2} onChange={this.handleChange2} />
+                            <input id="num2" type="number" value={this.state.num2} onChange={this.handleChange2} />
                         </div>
-                        <div>Soma: {this.soma}</div>
+                        <div>Soma: { this.state.soma } </div>
                     </form>
                 )
             }
         }
 
+        // Encontrando e mostrando o componente de classe na div root (html)
         ReactDOM.render(<FormSoma />, document.getElementById('root'))
 
     </script>
